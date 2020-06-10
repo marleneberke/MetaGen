@@ -104,9 +104,7 @@ noise_averaging_window_plot <- function(data){
       A_threshold
     )
   
-  #GetLowerCI <- function(x,y){return(prop.test(x,y)$conf.int[1])}
-  #GetTopCI <- function(x,y){return(prop.test(x,y)$conf.int[2])}
-  toPlot_Accuracy <- df_Accuracy %>% group_by(Model)# %>% summarize(Samples=n(),Hits=sum(Score),Mean=mean(Score),Lower=GetLowerCI(Hits,Samples),Top=GetTopCI(Hits,Samples))
+  toPlot_Accuracy <- df_Accuracy %>% group_by(Model)
   GetAccuracy <- function(x){
     return(toPlot_Accuracy %>% filter(perceived_noise<x+0.05,perceived_noise>x-0.05) %>%
              group_by(Model) %>% summarize(Score=mean(Score))) %>% mutate(Fidelity=x)

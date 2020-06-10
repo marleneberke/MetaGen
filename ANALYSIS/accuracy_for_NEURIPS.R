@@ -1,9 +1,7 @@
 #This is file provides support functions called by the main analysis_of_raw_data.R script
 #This function will return a dataframe with accuracy scores for several models.
 
-library(dplyr)
-library(readr)
-library(stringr)
+library(tidyverse)
 
 parse_last_percept <- function(ft) {
   if (str_detect(ft, fixed("], ["))) {

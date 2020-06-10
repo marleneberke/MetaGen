@@ -1,9 +1,6 @@
 #This is file provides support functions called by the main analysis_of_raw_data.R script
 
-library(dplyr)
-library(readr)
-library(ggplot2)
-library(stringr)
+library(tidyverse)
 
 #function for cleaning up Vs
 clean_V <- function(column){
