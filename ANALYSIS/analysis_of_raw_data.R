@@ -1,23 +1,20 @@
-#Script for processing data and making plots for example runs
-library(dplyr)
-library(tidyr)
-library(readr)
-library(tidyboot)
-library(ggplot2)
+# Script for processing the raw data from MetaGen
+# Also plots realities from an example run (as in Figure 2 of the NEURIPS paper)
+# Change line 16 to read the csv file resulting from merging the csv files from each run of MetaGen
+# Change line 35 to save a csv file of the processed data
+
 library(tidyverse)
 library(Rfast)
-library(gam)
 
-source("/Users/marleneberke/Documents/03_Yale/Projects/001_Mask_RCNN/ORB_project3/NEURIPS/ANALYSIS/accuracy_for_NEURIPS.R")
-source("/Users/marleneberke/Documents/03_Yale/Projects/001_Mask_RCNN/ORB_project3/NEURIPS/ANALYSIS/visualize_reality_for_NEURIPS.R")
-source("/Users/marleneberke/Documents/03_Yale/Projects/001_Mask_RCNN/ORB_project3/NEURIPS/ANALYSIS/MSE_Vs_for_NEURIPS.R")
-
+source("accuracy_for_NEURIPS.R")
+source("visualize_reality_for_NEURIPS.R")
+source("MSE_Vs_for_NEURIPS.R")
 
 ##################################
-## If you are using the csv file output by MetaGen
+# Read and process the data
 
 raw_data <- read_delim("merged.csv",
-                        "&", escape_double = FALSE, trim_ws = TRUE, n_max = 20)
+                        "&", escape_double = FALSE, trim_ws = TRUE)
 names(raw_data)<-str_replace_all(names(raw_data), c(" " = "."))
 
 simID <- 1:dim(raw_data)[1]
@@ -35,7 +32,7 @@ for(i in 1:I){
 }
 combined_data <- combined_data %>% bind_rows
 
-write.csv(combined_data,'ProcessedDataTest.csv')
+write.csv(combined_data,'ProcessedData.csv')
 
 ###################################################################
 #For visualizing an example run.

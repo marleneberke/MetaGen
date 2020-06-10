@@ -1,8 +1,8 @@
 #Main script for executing data simulation and inference using the generative model
+#Running this file simulates one visual system and n_percepts observations.
 
-#After inferring a V, run inference procedure again conditioning on V
-#There are no ambiguous percepts in this one
-#This version accomodates a variable number of frames
+#name the outfile whatever you'd like
+#n_percepts specifies the number of observations
 
 include("gm_with_FA_M_with_variable_frames.jl")
 include("inference_with_fully_trained_metagen_percept0.jl")
@@ -15,8 +15,8 @@ using Distances
 using TimerOutputs
 
 #creating output file
-outfile = string("output", ARGS[1], ".csv")
-#outfile = string("output111.csv")
+#outfile = string("output", ARGS[1], ".csv")
+outfile = string("output111.csv")
 file = open(outfile, "w")
 
 #Defining observations / constraints
@@ -102,7 +102,7 @@ num_samples = 100
 num_moves = 1
 
 #############################################
-#Online model
+#Online model. Online MetaGen
 
 #garbage, won't be used since lesion is false
 V = Matrix{Float64}(undef, length(possible_objects), 2)
@@ -117,7 +117,7 @@ print(file, num_moves, " & ")
 print_Vs_and_Rs_to_file(traces, num_samples, possible_objects)
 
 #############################################
-#lesion with learned V
+#lesion with learned V. Retrospective MetaGen
 avg_V = zeros(length(possible_objects), 2)
 for i = 1:num_samples
 	_,V,_ = Gen.get_retval(traces[i])

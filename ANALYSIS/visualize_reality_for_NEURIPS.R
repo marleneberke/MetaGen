@@ -1,16 +1,13 @@
-library(dplyr)
-library(stringr)
-library(ggplot2)
+#This is file provides support functions called by the main analysis_of_raw_data.R script
+#This visualize_reality() function makes and saves the plots for Figure 3.
+
+library(tidyverse)
 library(cowplot)
 
 #function for cleaning up Vs
 clean <- function(column){
   column <- column %>%
-    # lapply(function(x){gsub(pattern = "[", replacement="",x, fixed = TRUE)}) %>%
-    # lapply(function(x){gsub(pattern = "]", replacement="",x, fixed = TRUE)}) %>%
-    # lapply(function(x){gsub(pattern = ";", replacement="",x, fixed = TRUE)}) %>%
-    lapply(function(x){gsub(pattern = "Any", replacement="",x, fixed = TRUE)})
-  # lapply(function(x){gsub(pattern = "\\", replacement="",x, fixed = TRUE)})
+  lapply(function(x){gsub(pattern = "Any", replacement="",x, fixed = TRUE)})
 }
 
 parse_last_percept <- function(ft) {
@@ -27,9 +24,6 @@ parse_last_percept <- function(ft) {
 visualize_reality <- function(data){
   data$gt_R <- clean(data$gt_R) #gt_R is a list. it has one element, gt_R[[1]] is characters.
   data$gt_R[[1]] <- substr(data$gt_R[[1]], start=2, stop=nchar(data$gt_R[[1]])-1) #removed extra brackets
-  #gsub(pattern = "\\", replacement="",data$gt_R[[1]], fixed = TRUE) #not working
-  #because if reality is empty, have to split based on ", S"
-  #temp <- as.list(strsplit(data$gt_R[[1]], "], [", fixed=TRUE)[[1]])
   gt_R <- as.list(strsplit(data$gt_R[[1]], "], ", fixed=TRUE)[[1]])
   
   num_percepts <- length(gt_R)
@@ -42,7 +36,6 @@ visualize_reality <- function(data){
   
   matches <- regmatches(colnames(data), gregexpr("percept[[:digit:]]+", colnames(data)))
   percepts_list <- unlist(regmatches(colnames(data), gregexpr("percept[[:digit:]]+", colnames(data))))
-  #percepts_list <- grep(text = gregexpr("percept[[:digit:]]+"), colnames(data), value=TRUE)
   #count up how many objects of each category in each percept and tally it in matrix
   for(p in 1:num_percepts){
     for(cat in 1:num_categories){
@@ -55,8 +48,6 @@ visualize_reality <- function(data){
     total_n_frames <- total_n_frames + n_frames
     perceived_reality[,p] <- perceived_reality[,p]/n_frames
   }
-  #naive realist says if I saw it in any frame, its there
-  naive_reality <- 1*(perceived_reality>0)
   thresholded <- 1*(perceived_reality>=0.5)
   
   ################################################
@@ -133,14 +124,17 @@ visualize_reality <- function(data){
   mutated <- df %>% mutate(MetaGenCodedMistakes=coded_mistakes(gt_reality, frequency_table_retrospective), 
                            ThreshWasCodedMistakes=coded_mistakes(gt_reality, thresholded))
   
-  mutated %>% ggplot(aes(X,Y,fill=factor(MetaGenCodedMistakes)))+geom_tile()+theme(aspect.ratio=1)+scale_x_continuous(breaks = seq(0, 75, by = 25)) +
+  plot_of_coded_mistakes_metagen <- mutated %>% ggplot(aes(X,Y,fill=factor(MetaGenCodedMistakes)))+geom_tile()+theme(aspect.ratio=1)+scale_x_continuous(breaks = seq(0, 75, by = 25)) +
     scale_fill_manual(values=c("#28B302", "#3836FF", "#FF5A03"))
   
-  mutated %>% ggplot(aes(X,Y,fill=factor(ThreshWasCodedMistakes)))+geom_tile()+theme(aspect.ratio=1)+
+  plot_of_coded_mistakes_thresh <- mutated %>% ggplot(aes(X,Y,fill=factor(ThreshWasCodedMistakes)))+geom_tile()+theme(aspect.ratio=1)+
     scale_x_continuous(breaks = seq(0, 75, by = 25)) + scale_fill_manual(values=c("#28B302", "#3836FF", "#FF5A03"))
   
-  # Heatmap 
-  #low="black", high="white", in scale_fill_gradient
+  ggsave("plot_of_coded_mistakes_metagen.pdf",plot_of_coded_mistakes_metagen)
+  ggsave("plot_of_coded_mistakes_thresh.pdf",plot_of_coded_mistakes_thresh)
+  
+  
+  # Heatmaps
   p1 <- ggplot(df, aes(X, Y, fill= gt_reality)) + 
     geom_tile() +
     scale_fill_gradient(limits=c(0, 1)) +
@@ -160,11 +154,13 @@ visualize_reality <- function(data){
     ggtitle("Inferred realities retrospective MetaGen") +
     xlab("Percepts presented") + ylab("Categories") + theme(aspect.ratio=1) +
     scale_x_continuous(breaks = seq(0, 75, by = 25))
+  # plot for online metagen (not used in paper)
   # p4 <- ggplot(df, aes(X, Y, fill= frequency_table_online)) + 
   #   geom_tile() +
   #   scale_fill_gradient(limits=c(0, 1)) +
   #   ggtitle("Inferred realities online MetaGen") +
   #   xlab("Percepts presented") + ylab("Categories")
+  # plot for lesioned metagen (not used in paper)
   # p5 <- ggplot(df, aes(X, Y, fill= frequency_table_lesioned)) + 
   #   geom_tile() +
   #   scale_fill_gradient(limits=c(0, 1)) +
@@ -177,15 +173,12 @@ visualize_reality <- function(data){
     xlab("Percepts presented") + ylab("Categories") + theme(aspect.ratio=1) +
     scale_x_continuous(breaks = seq(0, 75, by = 25))
   
-  par(mfrow=c(1,6))
-  
   all <- align_plots(p1, p2, p3, p6, align="hv", axis="tblr")
-  ggdraw(all[[1]])
-  ggdraw(all[[2]])
-  ggdraw(all[[3]])
-  #ggdraw(all[[4]])
-  #ggdraw(all[[5]])
-  ggdraw(all[[6]])
+
+  save_plot("ground_truth.pdf", p1)
+  save_plot("percepts.pdf", p2)
+  save_plot("retrospective_metagen.pdf", p3)
+  save_plot("thresholding.pdf", p6)
 }
 
 ##########################################################################
