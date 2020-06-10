@@ -14,8 +14,8 @@ TimerOutputs
 To run it, the model, run execute_for_NEURIPS.jl. Give the output file "outfile" a name. This will train MetaGen on n_percepts number of observations. The results will be written to a .csv file. If you do this multiple times, with a different name for the output file each time, you can then merge these .csv files into one file called merged.csv and then analyze the data using the code in the ANALYSIS folder.
 
 ANALYSIS is done in R 4.0.0. It requires the following packages:
-dplyr
-tidyr
+* dplyr
+* tidyr
 readr
 tidyboot
 ggplot2
