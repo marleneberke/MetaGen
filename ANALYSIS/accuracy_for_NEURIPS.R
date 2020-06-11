@@ -17,20 +17,13 @@ parse_last_percept <- function(ft) {
 #function for cleaning up Vs
 clean <- function(column){
   column <- column %>%
-    # lapply(function(x){gsub(pattern = "[", replacement="",x, fixed = TRUE)}) %>%
-    # lapply(function(x){gsub(pattern = "]", replacement="",x, fixed = TRUE)}) %>%
-    # lapply(function(x){gsub(pattern = ";", replacement="",x, fixed = TRUE)}) %>%
     lapply(function(x){gsub(pattern = "Any", replacement="",x, fixed = TRUE)})
-  # lapply(function(x){gsub(pattern = "\\", replacement="",x, fixed = TRUE)})
-}
+  }
 
 
 accuracy <- function(data){
   data$gt_R <- clean(data$gt_R) #gt_R is a list. it has one element, gt_R[[1]] is characters.
   data$gt_R[[1]] <- substr(data$gt_R[[1]], start=2, stop=nchar(data$gt_R[[1]])-1) #removed extra brackets
-  #gsub(pattern = "\\", replacement="",data$gt_R[[1]], fixed = TRUE) #not working
-  #because if reality is empty, have to split based on ", S"
-  #temp <- as.list(strsplit(data$gt_R[[1]], "], [", fixed=TRUE)[[1]])
   gt_R <- as.list(strsplit(data$gt_R[[1]], "], ", fixed=TRUE)[[1]])
   
   num_percepts <- length(gt_R)
@@ -44,8 +37,6 @@ accuracy <- function(data){
   
   matches <- regmatches(colnames(data), gregexpr("percept[[:digit:]]+", colnames(data)))
   percepts_list <- unlist(matches)
-  #percepts_list <- grep(text = gregexpr("percept[[:digit:]]+"), colnames(data), value=TRUE)
-  #count up how many objects of each category in each percept and tally it in matrix
   n_frames_vec <- rep(0, num_percepts)
   for(p in 1:num_percepts){
     for(cat in 1:num_categories){
