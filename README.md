@@ -2,6 +2,19 @@
 
 
 #### Overview:
+
+
+We propose MetaGen, a framework for the unsupervised learning of
+metacognition. In MetaGen, metacognition is expressed as a generative model of
+how a perceptual system transforms raw sensory data into noisy percepts. Using
+basic principles of how the world works (like object permanence), MetaGen jointly 
+infers the objects in the world causing the percepts and a representation of its own perceptual system. MetaGen can
+then use this metacognition to infer which objects are actually present, thereby
+flagging missed or hallucinated objects. On a synthetic dataset of realities and
+black-box visual systems, we MetaGen can quickly learn a metacognition
+1and improve the system’s overall accuracy, outperforming baseline models that lack a metacognition.
+
+
 The folder METAGEN contains the code for the MetaGen model. The folder ANALYSIS contains the code for analyzing the data. The DATA folder contains the processed data from our 35000 simulations discussed in the paper. It is broken into four chunks to keep the file sizes manageable.
 
 #### METAGEN:
