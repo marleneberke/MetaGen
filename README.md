@@ -1,7 +1,7 @@
 # MetaGen
 
 
-######Overview:
+###### Overview:
 The folder METAGEN contains the code for the MetaGen model. The folder ANALYSIS contains the code for analyzing the data.
 
 METAGEN is implemented in Julia. It requires the following packages:
