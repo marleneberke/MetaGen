@@ -14,7 +14,7 @@ To analyze the processed data that we've provided in the DATA folder file, use t
 
 #### Requirements:
 
-METAGEN is implemented in Julia. It requires the following packages:
+METAGEN is implemented in Julia 1.4. It requires the following packages:
 * Gen
 * FreqTables
 * Distributions
