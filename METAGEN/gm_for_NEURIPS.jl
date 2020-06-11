@@ -1,3 +1,4 @@
+#This file provides support functions called by the main script execute_for_NEURIPS.jl
 #Generative model with fragmentation file
 
 using Gen
@@ -173,9 +174,7 @@ end
 ##############################################################################################
 
 #This function builds the percept for a frame. As input, it takes the reality R,the visual system V,
-# fragmentation_lambda, fragmentation_max, hallucination_max, and possible_objects
-#fragmentation_max will be the most fragmentations possible per object. So for a single token object in reality,
-#it can be fragmented at most fragmentation_max times, in addition to being detected once.
+#and possible_objects
 @gen function build_percept(R, V::Matrix{Float64}, possible_objects)
 	perceived_frame = []
 

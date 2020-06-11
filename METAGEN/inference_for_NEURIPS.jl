@@ -1,8 +1,7 @@
+#This file provides support functions called by the main script execute_for_NEURIPS.jl
 #Inference procedure file
-#include("gm_with_fragmentation.jl")
-include("gm_with_FA_M_with_variable_frames.jl")
-#include("gm_Julian_intermediate.jl")
-include("shared_functions.jl") #just want countmemb function
+include("gm_for_NEURIPS.jl")
+include("shared_functions_for_NEURIPS.jl")
 
 using Gen
 using FreqTables
@@ -82,40 +81,17 @@ function set_observations(obs, gt_choices, p, n_frames)
     end
 end
 
-# #perturbs V all at once. after more percepts, MH starts to reject the proposals a lot
-# #std controls the standard deviation of the normal perpurbations of the fa and miss rates
-# @gen function perturbation_proposal(prev_trace, std::Float64)
-#     choices = get_choices(prev_trace)
-#     #(T,) = get_args(prev_trace)
-#     #perturb fa and miss rates normally with std 0.1
-
-#     for j = 1:length(possible_objects)
-#     	#new FA rate will be between 0 and 1
-#     	FA = @trace(trunc_normal(choices[(:fa, i)], std, 0.0, 1.0), (:fa, i))
-#         M = @trace(trunc_normal(choices[(:m, i)], std, 0.0, 1.0), (:m, i))
-#     end
-# end
-
 #perturb each entry of V independently
-#j is the index of the possible object whose hall_lambda or M will be perturbed
-#hall is a boolean for if it will perturb the hall_lambda or M. If true, perturb FA. If false, perturb M.
 #std controls the standard deviation of the normal perpurbations of the fa and miss rates
+#j is the index of the possible object whose FA or M will be perturbed
+#hall is a boolean for if it will perturb the FA or M. If true, perturb FA. If false, perturb M.
 @gen function perturbation_proposal_individual(prev_trace, std::Float64, j::Int, hall::Bool)
     choices = get_choices(prev_trace)
     if hall
-		#new hallucination_lamda will be drawn from a normal distribution
-		#centered on previous hallucination_lambda and between 0 and something arbitrary.
-		#to do this right, might not want the upper bound. upper_bound is arbitrary.
-		#exact value shouldn't matter because should be very unlikely anyway
-		#upper_bound = 100.0 #make sure it matches upper bound in gm
-    	#hall = @trace(trunc_normal(choices[(:hall_lambda, j)], std, 0.0, upper_bound), (:hall_lambda, j))
-        #FA = @trace(trunc_normal(choices[(:fa, j)], std, 0.0, 1.0), (:fa, j))
-        FA = @trace(trunc_normal(choices[(:fa, j)], std, 0.0, 0.5), (:fa, j))
-
+        FA = @trace(trunc_normal(choices[(:fa, j)], std, 0.0, 1.0), (:fa, j))
     else
         #new M rate will be between 0 and 1
-        #M = @trace(trunc_normal(choices[(:m, j)], std, 0.0, 1.0), (:m, j))
-        M = @trace(trunc_normal(choices[(:m, j)], std, 0.0, 0.5), (:m, j))
+        M = @trace(trunc_normal(choices[(:m, j)], std, 0.0, 1.0), (:m, j))
     end
 end
 

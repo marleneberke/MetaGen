@@ -1,12 +1,12 @@
-#Main script for executing data simulation and inference using the generative model
-#Running this file simulates one visual system and n_percepts observations.
+#Main script for executing data simulation and inference using the generative model.
+#Running this file simulates one visual system and n_percepts observations. In the NEURIPS paper, we ran this 35000 times to simulate 35000 visual systems.
 
-#name the outfile whatever you'd like
-#n_percepts specifies the number of observations
+#In line 19, name the outfile whatever you'd like
+#n_percepts (line 23) specifies the number of observations
 
-include("gm_with_FA_M_with_variable_frames.jl")
-include("inference_with_fully_trained_metagen_percept0.jl")
-include("shared_functions.jl") #just want countmemb function
+include("gm_for_NEURIPS.jl")
+include("inference_for_NEURIPS.jl")
+include("shared_functions_for_NEURIPS.jl")
 
 using Gen
 using FreqTables
@@ -19,15 +19,14 @@ using TimerOutputs
 outfile = string("output111.csv")
 file = open(outfile, "w")
 
-#Defining observations / constraints
-possible_objects = ["person","bicycle","car","motorcycle","airplane"]
-J = length(possible_objects)
-
-#each V sill have n_percepts, that many movies
+#n_percepts specifies the number of observations (collections of percepts) that the visual system will see
 n_percepts = 75 #particle filter is set up such that it needs at least 2 percepts
 
-#uniformly between 5 and 15 frames per percept
+#uniformly between 5 and 15 frames (percepts) per observation
 n_frames = convert(Array{Int,1}, floor.(11*(rand(Float64, n_percepts)).+5))
+
+possible_objects = ["person","bicycle","car","motorcycle","airplane"]
+J = length(possible_objects)
 
 #file header
 print(file, "gt_V & gt_R & ")
