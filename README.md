@@ -2,7 +2,7 @@
 
 
 #### Overview:
-The folder METAGEN contains the code for the MetaGen model. The folder ANALYSIS contains the code for analyzing the data.
+The folder METAGEN contains the code for the MetaGen model. The folder ANALYSIS contains the code for analyzing the data. The DATA folder contains the processed data from our 35000 simulations discussed in the paper. It is broken into four chunks to keep the file sizes manageable.
 
 #### METAGEN:
 
