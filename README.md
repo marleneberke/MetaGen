@@ -43,5 +43,7 @@ ANALYSIS is done in R 4.0.0. It requires the following packages:
 #### Demo:
 
 ![Alt text](4b6dw3.gif)
+Output from Detectron2 / Input to MetaGen
 
 ![Alt text](4b6e15.gif)
+Output from MetaGen (Inferred World States)
