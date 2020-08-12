@@ -42,6 +42,8 @@ ANALYSIS is done in R 4.0.0. It requires the following packages:
 
 #### Demo:
 
+Using a real-world artificial visual system, FAIR's Detectron2: https://github.com/facebookresearch/detectron2
+
 Output from Detectron2 / Input to MetaGen:
 
 ![Alt text](4b6dw3.gif)
