@@ -42,4 +42,6 @@ ANALYSIS is done in R 4.0.0. It requires the following packages:
 
 #### Demo:
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/mdb293/MetaGen/edit/master/4b6dw3.gif "Logo Title Text 1")
+
+![alt text](https://github.com/mdb293/MetaGen/edit/master/4b6dw3.gif "Logo Title Text 1")
