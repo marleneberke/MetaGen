@@ -42,6 +42,6 @@ ANALYSIS is done in R 4.0.0. It requires the following packages:
 
 #### Demo:
 
-![alt text](https://github.com/mdb293/MetaGen/edit/master/4b6dw3.gif "Logo Title Text 1")
+![](https://github.com/mdb293/MetaGen/edit/master/4b6dw3.gif)
 
-![alt text](https://github.com/mdb293/MetaGen/edit/master/4b6dw3.gif "Logo Title Text 1")
+![](https://github.com/mdb293/MetaGen/edit/master/4b6e15.gif)
