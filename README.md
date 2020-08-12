@@ -42,6 +42,6 @@ ANALYSIS is done in R 4.0.0. It requires the following packages:
 
 #### Demo:
 
-![Alt text](4b6dw3.gif) / ![](4b6dw3.gif)
+![Alt text](4b6dw3.gif)
 
-![Alt text](4b6e15.gif) / ![](4b6e15.gif)
+![Alt text](4b6e15.gif)
