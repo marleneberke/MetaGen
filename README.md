@@ -40,7 +40,7 @@ ANALYSIS is done in R 4.0.0. It requires the following packages:
 * cowplot
 
 
-#### Demo:
+#### Demos:
 
 Using a real-world artificial visual system, FAIR's Detectron2: https://github.com/facebookresearch/detectron2
 
@@ -48,7 +48,7 @@ Output from Detectron2 / Input to MetaGen:
 
 ![Alt text](4b6dw3.gif)
 
-Detectron2's outputs were:
+Detectron2's frame-by-frame outputs were:
 
 [person, bicycle, car]
 [person, bicycle, bicycle]
@@ -65,6 +65,6 @@ Output from MetaGen (Inferred World States):
 
 ![Alt text](4ban7x.gif)
 
-[person, bicycle]
+[person, bicycle] for all frames
 
 MetaGen provides a stable representation of the person and the bicycle, and that it infers that the detection of a car and a motorcycle were both hallucinations from the neural net.
