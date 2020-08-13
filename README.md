@@ -52,4 +52,4 @@ Output from MetaGen (Inferred World States):
 
 ![Alt text](4ban7x.gif)
 
-Note: The assumption of one object per class does some of the work cleaning up the percepts. But the removal of the hallucinated car and motorcycle was all MetaGen (based mostly on the object permanence assumption)!
+MetaGen provides a stable representation of the person and the bicycle, and that it infers that the detection of a car and a motorcycle were both hallucinations from the neural net.
