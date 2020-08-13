@@ -48,6 +48,9 @@ Output from Detectron2 / Input to MetaGen:
 
 ![Alt text](4b6dw3.gif)
 
+Detectron2's outputs were:
+[person, bicycle, car]
+
 Output from MetaGen (Inferred World States):
 
 ![Alt text](4ban7x.gif)
