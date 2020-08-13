@@ -50,13 +50,13 @@ Output from Detectron2 / Input to MetaGen:
 
 Detectron2's outputs were:
 
-[person, bicycle, motorcycle]
+[person, bicycle, car]
 [person, bicycle, bicycle]
 [person, bicycle, bicycle]
 [person, bicycle, bicycle]
 [person, bicycle, bicycle]
 [person, bicycle]
-[person, bicycle, car]
+[person, bicycle, motorcycle]
 [person, bicycle]
 [person, bicycle]
 [person, bicycle]
