@@ -49,10 +49,22 @@ Output from Detectron2 / Input to MetaGen:
 ![Alt text](4b6dw3.gif)
 
 Detectron2's outputs were:
+
+[person, bicycle, motorcycle]
+[person, bicycle, bicycle]
+[person, bicycle, bicycle]
+[person, bicycle, bicycle]
+[person, bicycle, bicycle]
+[person, bicycle]
 [person, bicycle, car]
+[person, bicycle]
+[person, bicycle]
+[person, bicycle]
 
 Output from MetaGen (Inferred World States):
 
 ![Alt text](4ban7x.gif)
+
+[person, bicycle]
 
 MetaGen provides a stable representation of the person and the bicycle, and that it infers that the detection of a car and a motorcycle were both hallucinations from the neural net.
