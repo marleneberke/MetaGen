@@ -50,6 +50,6 @@ Output from Detectron2 / Input to MetaGen:
 
 Output from MetaGen (Inferred World States):
 
-![Alt text](4b6e15.gif)
+![Alt text](4ban7x.gif)
 
 Note: The assumption of one object per class does some of the work cleaning up the percepts. But the removal of the hallucinated car and motorcycle was all MetaGen (based mostly on the object permanence assumption)!
