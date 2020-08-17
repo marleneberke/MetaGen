@@ -41,6 +41,17 @@ ANALYSIS is done in R 4.0.0. It requires the following packages:
 
 
 ### Demos:
+
+#### Demo 1
+
+Output from Detectron2 / Input to MetaGen:
+
+![Alt text](4beii8.gif)
+
+Output from MetaGen (Inferred World States):
+
+![Alt text](4bhqr2.gif)
+
 #### Demo 1
 
 Using a real-world artificial visual system, FAIR's Detectron2: https://github.com/facebookresearch/detectron2
@@ -69,13 +80,3 @@ Output from MetaGen (Inferred World States):
 [person, bicycle] for all frames
 
 MetaGen provides a stable representation of the person and the bicycle, and that it infers that the detection of a car and a motorcycle were both hallucinations from the neural net.
-
-#### Demo 2
-
-Output from Detectron2 / Input to MetaGen:
-
-![Alt text](4beii8.gif)
-
-Output from MetaGen (Inferred World States):
-
-![Alt text](4bhqr2.gif)
