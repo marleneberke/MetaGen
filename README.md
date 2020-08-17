@@ -52,7 +52,7 @@ Output from MetaGen (Inferred World States):
 
 ![Alt text](4bhqr2.gif)
 
-#### Demo 1
+#### Demo 2
 
 Using a real-world artificial visual system, FAIR's Detectron2: https://github.com/facebookresearch/detectron2
 
