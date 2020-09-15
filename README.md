@@ -42,6 +42,8 @@ ANALYSIS is done in R 4.0.0. It requires the following packages:
 
 ### Demos:
 
+Using a real-world artificial visual system, FAIR's Detectron2: https://github.com/facebookresearch/detectron2
+
 #### Demo 1
 
 Output from Detectron2 / Input to MetaGen:
@@ -53,8 +55,6 @@ Output from MetaGen (Inferred World States):
 ![Alt text](4bhqr2.gif)
 
 #### Demo 2
-
-Using a real-world artificial visual system, FAIR's Detectron2: https://github.com/facebookresearch/detectron2
 
 Output from Detectron2 / Input to MetaGen:
 
