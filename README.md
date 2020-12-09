@@ -1,5 +1,7 @@
 # MetaGen
 
+Link to paper: https://arxiv.org/abs/2011.15067
+
 
 ### Overview:
 
